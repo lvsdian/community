@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>cn.andios</groupId>
+    <artifactId>majiang-community</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>majiang-community</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <profiles>
+    <!--开发环境-->
+    <profile>
+        <id>dev</id>
+        <properties>
+            <db.url>jdbc:h2:C:/Users/LSD/Documents/h2database/community</db.url>
+            <db.user>root</db.user>
+            <db.password>root</db.password>
+        </properties>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+    </profile>
+    <!--生产环境-->
+    <profile>
+        <id>production</id>
+        <properties>
+            <db.url>jdbc:mysql://47.102.132.185:3306/lvsd</db.url>
+            <db.user>root</db.user>
+            <db.password>cn.AndiOS.lsd123456</db.password>
+        </properties>
+    </profile>
+</profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 引入thymeleaf -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- 引入mybatis整合spring boot -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <!-- 引入okHttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.14.1</version>
+        </dependency>
+        <!-- 引入fast json -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.28</version>
+        </dependency>
+        <!--mysql-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
+        </dependency>
+        <!-- 引入h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.199</version>
+        </dependency>
+        <!-- 引入lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--commons-lang3-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <!-- devtools热部署 -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-devtools</artifactId>-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
+
+        <!--ucloudu上传文件 https://github.com/ucloud/ufile-sdk-java-->
+       <dependency>
+            <groupId>cn.ucloud.ufile</groupId>
+            <artifactId>ufile-client-java</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>5.2.4</version>
+                <configuration>
+                    <url>${db.url}</url>
+                    <user>${db.user}</user>
+                    <password>${db.password}</password>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>8.0.16</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.199</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.7</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                        <version>1.4.199</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
