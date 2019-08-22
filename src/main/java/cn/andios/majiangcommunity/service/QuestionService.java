@@ -71,7 +71,7 @@ public class QuestionService {
         //设置分页对象属性
         paginationDTO.setPagination(totalPages,page);
 
-        Integer offset = size*(page - 1);
+        Integer offset = page < 1 ? 0 : size * (page - 1);
 
         questionQueryDTO.setPage(offset);
         questionQueryDTO.setSize(size);
