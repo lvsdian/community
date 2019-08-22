@@ -1,17 +1,21 @@
-#码匠社区
+## 码匠社区  
 
-###参考文档  
+### 参考文档  
+
 [thymeleaf文档](http://www.thymeleaf.org)  
 [makrdown 插件](https://pandao.github.io)  
 [UCloud 对象存储文档](https://docs.ucloud.cn/storage_cdn/ufile/tools/sdk)  
 [UCloud 对象存储github example](https://github.com/ucloud/ufile-sdk-java)  
 [UCloud 对象存储控制台](https://console.ucloud.cn/ufile/ufile)   
 [图标字体库](https://www.iconfont.cn/)
-###flyway  
+
+### flyway  
 flywaydb：`mvn flyway:migrate`  
-###mybatis  
-mybatis generator：`mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate`  
-###部署   
+
+### mybatis  
+mybatis generator：`mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate` 
+ 
+### 部署   
 - spring boot能根据profile的不同，运行不同的application.properties,这个项目中有dev和production两种环境。项目从本地传到github后，服务器端clone下来，通过`copy application.properties application-production.properties`生成一个production环境的application.properties,
 修改application-production.properties后，通过`java -jar -Dspring.profiles.active=production *.jar`命令运行production环境下的项目(需要先打包)  
 - maven也提供profile，本项目中，dev环境下，flyway使用的本地h2,production环境下，flyway使用的服务器端的mysql.参考
@@ -60,6 +64,7 @@ mybatis generator：`mvn -Dmybatis.generator.overwrite=true mybatis-generator:ge
 执行完flyway后，项目打包，`mvn clean compile package`，运行jar即可
 
 
+### command  
 1. 安装环境  
     - `yum update`
     - `yum install git`    
