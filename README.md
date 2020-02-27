@@ -83,7 +83,5 @@ mybatis generator：`mvn -Dmybatis.generator.overwrite=true mybatis-generator:ge
 5. 启动  
     - `java -jar -Dspring.profiles.active=production *.jar`   
 
-PS：
-- idea中按住alt，鼠标可以纵向选中  
 
 
